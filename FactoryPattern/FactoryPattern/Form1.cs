@@ -16,5 +16,13 @@ namespace FactoryPattern
         {
             InitializeComponent();
         }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            NameFactory nameFact = new NameFactory();
+            Namer namer = nameFact.GetNamer(txtname.Text);
+            txtFName.Text = namer.FirstName;
+            txtLName.Text = namer.LastName;
+        }
     }
 }

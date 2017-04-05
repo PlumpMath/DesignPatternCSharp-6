@@ -12,7 +12,7 @@ namespace FactoryPattern
         public string LastName { get; set; }
     }
 
-    public class FirstFirst: Namer
+    public class FirstFirst : Namer
     {
         public FirstFirst(string name)
         {
@@ -35,9 +35,9 @@ namespace FactoryPattern
         public LastFirst(string name)
         {
             int i = name.IndexOf(",");
-            if(i > 0)
+            if (i > 0)
             {
-                LastName = name.Substring(0, 1);
+                LastName = name.Substring(0, i);
                 FirstName = name.Substring(i + 1).Trim();
             }
             else
@@ -47,4 +47,19 @@ namespace FactoryPattern
             }
         }
     }
+
+    public class NameFactory
+    {
+        public NameFactory() { }
+
+        public Namer GetNamer(string name)
+        {
+            int i = name.IndexOf(",");
+            if (i > 0)
+                return new LastFirst(name);
+            else
+                return new FirstFirst(name);
+        }
+    }
+
 }
